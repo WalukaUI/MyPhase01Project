@@ -1,5 +1,6 @@
-
-
+//const url = "https://api.edamam.com/api/nutrition-details"
+//const url = "https://MetaWeather.com//api/location/44418/"
+//const url = "https://goweather.herokuapp.com/weather/Curitiba"
 const url = "https://data.usajobs.gov/api/jobs?Title=Explosive"
 
 function getJobs(){
@@ -17,6 +18,9 @@ function getJobs(){
         console.log(json)})
 }
 getJobs()
+
+
+
 
 // function localStorage(a){
 // a.forEach(e => {
