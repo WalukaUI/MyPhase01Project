@@ -5,13 +5,12 @@ const counties = "https://data.mo.gov/resource/byps-gsbw.json",
     UnemploymentRates = "https://data.mo.gov/resource/uaxb-77vv.json",
     uSUnemploymentRates = "https://data.mo.gov/resource/fks3-5x8k.json",
     GovernmentJob = "https://data.mo.gov/resource/83mm-j7ms.json",
-    Url = GovernmentJob
 
-const mainbuttons = document.getElementById('mainbuttons'),
+    mainbuttons = document.getElementById('mainbuttons'),
     detailsSection = document.getElementById("details")
 
-function getJobs() {
-    fetch(`${Url}`, {
+function getJobs(a) {
+    fetch(`${a}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
@@ -27,7 +26,6 @@ function getJobs() {
 
         })
 }
-getJobs()
 
 const populateButtons = () => {
     let jobsBtn = document.createElement('button'),
@@ -47,12 +45,12 @@ const populateButtons = () => {
     mainbuttons.appendChild(ZipcodeData)
 
     jobsBtn.innerHTML = "State Jobs"
-    FarmersMarkets.innerHTML="Farmers Markets"
-    LawEnforcement.innerHTML='LawEnforcement'
-    moUnemployment.innerHTML='MO Unemployment'
-    Usunemployment.innerHTML='US Unemployment'
-    counties.innerHTML='Counties'
-    ZipcodeData.innerHTML='Zipcode Data'
+    FarmersMarkets.innerHTML = "Farmers Markets"
+    LawEnforcement.innerHTML = 'LawEnforcement'
+    moUnemployment.innerHTML = 'MO Unemployment'
+    Usunemployment.innerHTML = 'US Unemployment'
+    counties.innerHTML = 'Counties'
+    ZipcodeData.innerHTML = 'Zipcode Data'
 }
 
 const populateJobs = (a) => {
@@ -72,3 +70,13 @@ const populateJobs = (a) => {
     pTag.innerHTML = a.jobdescription
     h4Tag.innerHTML = `${a.salarybasis} : ${a.salarystart}`
 }
+
+const Listener=document.addEventListener('click',(e)=>{
+    
+})
+
+document.addEventListener('DOMContentLoaded',()=>{
+    getJobs(GovernmentJob)
+    Listener()
+
+})
