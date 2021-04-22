@@ -6,8 +6,14 @@ h1{
 }
 #mainbuttons{
     text-align: left;
+    display: flex;
 }
 button{
     height: 80px;
     width: 200px;
+}
+.moJobsDiv{
+    background-color: aqua;
+    border: 1px solid black;
+    border-radius: 10px;
 }
