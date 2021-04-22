@@ -13,7 +13,14 @@ button{
     width: 200px;
 }
 .moJobsDiv{
-    background-color: aqua;
+    background-color: rgb(142, 216, 245);
     border: 1px solid black;
     border-radius: 10px;
+    height: 170px;
+    text-align: center;
+}
+p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

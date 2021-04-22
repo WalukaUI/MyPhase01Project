@@ -56,6 +56,7 @@ const populateButtons = () => {
 }
 
 const populateJobs = (a) => {
+    console.log(a);
     let div1 = document.createElement('div'),
         h3Tag = document.createElement('h3'),
         pTag = document.createElement('p'),
@@ -68,6 +69,6 @@ const populateJobs = (a) => {
 
     div1.className = 'moJobsDiv'
     h3Tag.innerHTML = a.title
-    pTag.innerHTML = a.salarybasis
-    h4Tag.innerHTML = a.salarystart
+    pTag.innerHTML = a.jobdescription
+    h4Tag.innerHTML = `${a.salarybasis} : ${a.salarystart}`
 }
