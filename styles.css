@@ -18,11 +18,14 @@ button{
     border-radius: 10px;
     height: 170px;
     text-align: center;
+    position: relative;
+    display: inline-table;
 }
 p{
-    white-space: nowrap;
     overflow: hidden;
+    max-width: 75ch;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 form{
     padding-top: 10px;

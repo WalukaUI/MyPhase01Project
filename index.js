@@ -68,6 +68,7 @@ const populateJobs = (a) => {
     div1.className = 'moJobsDiv'
     h3Tag.innerHTML = a.title
     pTag.innerHTML = a.jobdescription
+    pTag.maxlength="10"
     h4Tag.innerHTML = `${a.salarybasis} : ${a.salarystart}`
 }
 
@@ -89,3 +90,7 @@ const serach=()=>{
 document.addEventListener('DOMContentLoaded',()=>{
     getJobs(GovernmentJob)
 })
+
+// $(document).on("click",function(){
+//     $("h1").slideUp("slow",function (){animate({speed:0.1});});
+//   });
