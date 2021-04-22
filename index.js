@@ -7,7 +7,8 @@ const counties = "https://data.mo.gov/resource/byps-gsbw.json",
     GovernmentJob = "https://data.mo.gov/resource/83mm-j7ms.json",
 
     mainbuttons = document.getElementById('mainbuttons'),
-    detailsSection = document.getElementById("details")
+    detailsSection = document.getElementById("details"),
+    serchvalue=document.getElementById('allSerch')
 
 function getJobs(a) {
     fetch(`${a}`, {
@@ -23,6 +24,8 @@ function getJobs(a) {
             Listener()
             j.forEach(e => {
                 populateJobs(e)
+                serchvalue.name=a
+                
             });
 
         })
@@ -76,14 +79,19 @@ function Listener(){
     const btns=document.getElementsByTagName('button')
     for(let i=0;i<btns.length;i++){
         btns[i].addEventListener('click',(x)=>{
-            (x.target.innerHTML==="State Jobs"?serach():null)
+            (x.target.innerHTML==="State Jobs"?search():null)
 
         })
        }
 }
-
-const serach=()=>{
-    alert('hdjfhj')
+const formBtn=document.getElementById('submits')
+const search=()=>{
+    formBtn.addEventListener('click',(e)=>{
+        e.preventDefault()
+        let x=serchvalue.value
+        let y=serchvalue.name
+        console.log(x,y);
+    })
 }
 
 
