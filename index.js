@@ -8,7 +8,7 @@ const counties = "https://data.mo.gov/resource/byps-gsbw.json",
 
     mainbuttons = document.getElementById('mainbuttons'),
     detailsSection = document.getElementById("details"),
-    serchvalue=document.getElementById('allSerch')
+    serchvalue = document.getElementById('allSerch')
 
 function getJobs(a) {
     fetch(`${a}`, {
@@ -24,8 +24,8 @@ function getJobs(a) {
             Listener()
             j.forEach(e => {
                 populateJobs(e)
-                serchvalue.name=a
-                
+                serchvalue.name = a
+
             });
 
         })
@@ -71,31 +71,68 @@ const populateJobs = (a) => {
     div1.className = 'moJobsDiv'
     h3Tag.innerHTML = a.title
     pTag.innerHTML = a.jobdescription
-    pTag.maxlength="10"
+    pTag.maxlength = "10"
     h4Tag.innerHTML = `${a.salarybasis} : ${a.salarystart}`
 }
 
-function Listener(){
-    const btns=document.getElementsByTagName('button')
-    for(let i=0;i<btns.length;i++){
-        btns[i].addEventListener('click',(x)=>{
-            (x.target.innerHTML==="State Jobs"?search():null)
+function Listener() {
+    const btns = document.getElementsByTagName('button')
+    for (let i = 0; i < btns.length; i++) {
+        btns[i].addEventListener('click', (x) => {
+            (x.target.innerHTML === "State Jobs" ? search() : null)
 
         })
-       }
+    }
 }
-const formBtn=document.getElementById('submits')
-const search=()=>{
-    formBtn.addEventListener('click',(e)=>{
+const formBtn = document.getElementById('submits')
+const search = () => {
+    formBtn.addEventListener('click', (e) => {
         e.preventDefault()
-        let x=serchvalue.value
-        let y=serchvalue.name
-        console.log(x,y);
+        let x = serchvalue.value
+        let y = serchvalue.name
+        serchResult(x, y);
     })
 }
+const serchResult = (x, y) => {
+    fetch(`${y}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    })
+        .then(res => res.json())
+        .then(j => {
+            detailsSection.innerHTML = ""
+            //Listener()
+            j.forEach(e => {
+                if (x === e.title) {
+                    populateJobs(e)
+                } else {
+                    console.log(e);
+                    createjobList(e, x)
+                }
+            });
+        })
+}
 
+const createjobList = (e, x) => {
+    let H3 = document.createElement('h3'),
+        uL = document.createElement('il'),
+        lI = document.createElement('li')
+        aTag=document.createElement('a')
 
-document.addEventListener('DOMContentLoaded',()=>{
+    detailsSection.appendChild(H3)
+    detailsSection.appendChild(uL)
+    uL.appendChild(lI)
+    lI.appendChild(aTag)
+    H3.innerHTML = `Unfortunatly could't find any job of ${x}`
+    aTag.innerHTML = e.title
+    aTag.href=e.joburl.url
+    aTag.target="blank"
+}
+
+document.addEventListener('DOMContentLoaded', () => {
     getJobs(GovernmentJob)
 })
 
