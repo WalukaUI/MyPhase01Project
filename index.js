@@ -20,6 +20,7 @@ function getJobs(a) {
         .then(res => res.json())
         .then(j => {
             populateButtons()
+            Listener()
             j.forEach(e => {
                 populateJobs(e)
             });
@@ -54,7 +55,6 @@ const populateButtons = () => {
 }
 
 const populateJobs = (a) => {
-    console.log(a);
     let div1 = document.createElement('div'),
         h3Tag = document.createElement('h3'),
         pTag = document.createElement('p'),
@@ -71,12 +71,21 @@ const populateJobs = (a) => {
     h4Tag.innerHTML = `${a.salarybasis} : ${a.salarystart}`
 }
 
-const Listener=document.addEventListener('click',(e)=>{
-    
-})
+function Listener(){
+    const btns=document.getElementsByTagName('button')
+    for(let i=0;i<btns.length;i++){
+        btns[i].addEventListener('click',(x)=>{
+            (x.target.innerHTML==="State Jobs"?serach():null)
+
+        })
+       }
+}
+
+const serach=()=>{
+    alert('hdjfhj')
+}
+
 
 document.addEventListener('DOMContentLoaded',()=>{
     getJobs(GovernmentJob)
-    Listener()
-
 })

@@ -24,3 +24,11 @@ p{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+form{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.allSerch{
+    width: 300px;
+    height: 30px;
+}
