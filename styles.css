@@ -11,6 +11,7 @@ h1{
 button{
     height: 80px;
     width: 200px;
+    background-color: "";
 }
 .moJobsDiv{
     background-color: rgb(142, 216, 245);

@@ -25,9 +25,7 @@ function getJobs(a) {
             j.forEach(e => {
                 populateJobs(e)
                 serchvalue.name = a
-
             });
-
         })
 }
 
@@ -79,8 +77,14 @@ function Listener() {
     const btns = document.getElementsByTagName('button')
     for (let i = 0; i < btns.length; i++) {
         btns[i].addEventListener('click', (x) => {
-            (x.target.innerHTML === "State Jobs" ? search() : null)
-
+            if(x.target.innerHTML === "State Jobs"){
+                document.getElementById('lable').innerHTML="Serach State Jobs"
+                x.target.style.backgroundColor="green"
+                search()
+            }else{
+                x.target.style.backgroundColor="red"
+            }
+         
         })
     }
 }
@@ -121,8 +125,6 @@ const serchResult = (x, y) => {
                 if (j[i].title !== x) {
                     createjobList(j[i], x)
                 }
-
-
             }
         })
 }
