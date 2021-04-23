@@ -10,7 +10,9 @@ const counties = "https://data.mo.gov/resource/byps-gsbw.json",
     detailsSection = document.getElementById("details"),
     serchvalue = document.getElementById('allSerch')
 
-function getJobs(a) {
+//fletch govenment data on page start
+
+function getApiData(a) {
     fetch(`${a}`, {
         method: 'GET',
         headers: {
@@ -20,14 +22,17 @@ function getJobs(a) {
     })
         .then(res => res.json())
         .then(j => {
+            mainbuttons.innerHTML=""
             populateButtons()
             Listener()
             j.forEach(e => {
                 populateJobs(e)
-                serchvalue.name = a
+                console.log(e);
             });
         })
 }
+
+//create main buttons 
 
 const populateButtons = () => {
     let jobsBtn = document.createElement('button'),
@@ -58,6 +63,8 @@ const populateButtons = () => {
     ZipcodeData.innerHTML = 'Zipcode Data'
 }
 
+//populate serch results on DOM
+
 const populateJobs = (a) => {
     let div1 = document.createElement('div'),
         h3Tag = document.createElement('h3'),
@@ -76,38 +83,33 @@ const populateJobs = (a) => {
     h4Tag.innerHTML = `${a.salarybasis} : ${a.salarystart}`
 }
 
+//create listner on click on main buttons and change InnerHTML in search
+
 function Listener() {
     const btns = document.getElementsByTagName('button')
     for (let i = 0; i < btns.length; i++) {
         
         btns[i].addEventListener('click', (x) => {
             document.getElementById('lable').innerHTML=`Search ${x.target.innerHTML}`
-            //x.target.style.backgroundColor="green"
-            search()
-
-
-            // if(x.target.innerHTML === "State Jobs"){
-            //     document.getElementById('lable').innerHTML=`Search ${x.target.innerHTML}`
-            //    // x.target.style.backgroundColor="green"
-            //     
-            // }else if(x.target.innerHTML === "Farmers Markets"){
-            //     //x.target.style.backgroundColor="green"
-            //     document.getElementById('lable').innerHTML=`Search ${x.target.innerHTML}`
-            // }else{
-            //     x.target.style.backgroundColor="red"
-            // }
+            let aPI=x.target.value
+            getApiData(aPI)
+            search(aPI)
         })
     }
 }
+
+// Taking search values 
 const formBtn = document.getElementById('submits')
-const search = () => {
+const search = (y) => {
     formBtn.addEventListener('click', (e) => {
         e.preventDefault()
         let x = serchvalue.value
-        let y = serchvalue.name
+        console.log(y);
         serchResult(x, y);
     })
 }
+
+// Flecting search values and calling functions to display results on DOM
 const serchResult = (x, y) => {
     fetch(`${y}`, {
         method: 'GET',
@@ -140,6 +142,8 @@ const serchResult = (x, y) => {
         })
 }
 
+// If search couldn't find any results
+
 const createjobList = (e, x) => {
 
     let uL = document.createElement('il'),
@@ -155,8 +159,9 @@ const createjobList = (e, x) => {
     aTag.target = "blank"
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    getJobs(GovernmentJob)
-})
+
+
+//Starting function
+    getApiData(GovernmentJob)
 
 
