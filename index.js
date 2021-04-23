@@ -1,3 +1,4 @@
+
 const counties = "https://data.mo.gov/resource/byps-gsbw.json",
     LawEnforcements = "https://data.mo.gov/resource/cgbu-k38b.json",
     ZipcodeData = "https://data.mo.gov/resource/8ejy-sj4q.json",
@@ -27,7 +28,6 @@ function getApiData(a) {
             Listener()
             j.forEach(e => {
                 populateJobs(e)
-                console.log(e);
             });
         })
 }
@@ -92,7 +92,13 @@ function Listener() {
         btns[i].addEventListener('click', (x) => {
             document.getElementById('lable').innerHTML=`Search ${x.target.innerHTML}`
             let aPI=x.target.value
-            getApiData(aPI)
+            detailsSection.innerHTML=""
+            if(x.target.value===FarmersMarketss){
+                console.log('FarmersMarketss');
+               // FarmersMarketData(aPI)
+            }else if(x.target.value===LawEnforcements){
+                console.log("LawEnforcements");
+            }
             search(aPI)
         })
     }
@@ -162,6 +168,7 @@ const createjobList = (e, x) => {
 
 
 //Starting function
+document.addEventListener('DOMContentLoaded', function () {
     getApiData(GovernmentJob)
-
+})
 
