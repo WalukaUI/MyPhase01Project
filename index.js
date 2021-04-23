@@ -104,32 +104,42 @@ const serchResult = (x, y) => {
         .then(res => res.json())
         .then(j => {
             detailsSection.innerHTML = ""
-            //Listener()
-            j.forEach(e => {
-                if (x === e.title) {
-                    populateJobs(e)
-                } else {
-                    console.log(e);
-                    createjobList(e, x)
+            let foundResult = []
+            for (let i = 0; i < j.length; i++) {
+                if (j[i].title === x) {
+                    foundResult.length = 0
+                    foundResult.push(j[i])
+                    populateJobs(j[i])
                 }
-            });
+            }
+            if (foundResult.length === 0) {
+                let h3list = document.createElement('h3')
+                detailsSection.appendChild(h3list)
+                h3list.innerHTML = `Not found result for ${x}`
+            }
+            for (let i = 0; i < j.length; i++) {
+                if (j[i].title !== x) {
+                    createjobList(j[i], x)
+                }
+
+
+            }
         })
 }
 
 const createjobList = (e, x) => {
-    let H3 = document.createElement('h3'),
-        uL = document.createElement('il'),
-        lI = document.createElement('li')
-        aTag=document.createElement('a')
 
-    detailsSection.appendChild(H3)
+    let uL = document.createElement('il'),
+        lI = document.createElement('li')
+        aTag = document.createElement('a')
+
     detailsSection.appendChild(uL)
     uL.appendChild(lI)
     lI.appendChild(aTag)
-    H3.innerHTML = `Unfortunatly could't find any job of ${x}`
+
     aTag.innerHTML = e.title
-    aTag.href=e.joburl.url
-    aTag.target="blank"
+    aTag.href = e.joburl.url
+    aTag.target = "blank"
 }
 
 document.addEventListener('DOMContentLoaded', () => {
