@@ -13,6 +13,12 @@ button{
     width: 200px;
     background-color: "";
 }
+
+.hButtons{
+    height: 80px;
+    width: 200px;
+    background-color: ""; 
+}
 .moJobsDiv{
     background-color: rgb(142, 216, 245);
     border: 1px solid black;

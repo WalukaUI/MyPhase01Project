@@ -1,7 +1,7 @@
 const counties = "https://data.mo.gov/resource/byps-gsbw.json",
-    LawEnforcement = "https://data.mo.gov/resource/cgbu-k38b.json",
+    LawEnforcements = "https://data.mo.gov/resource/cgbu-k38b.json",
     ZipcodeData = "https://data.mo.gov/resource/8ejy-sj4q.json",
-    FarmersMarkets = "https://data.mo.gov/resource/89zi-f2wa.json",
+    FarmersMarketss = "https://data.mo.gov/resource/89zi-f2wa.json",
     UnemploymentRates = "https://data.mo.gov/resource/uaxb-77vv.json",
     uSUnemploymentRates = "https://data.mo.gov/resource/fks3-5x8k.json",
     GovernmentJob = "https://data.mo.gov/resource/83mm-j7ms.json",
@@ -47,8 +47,11 @@ const populateButtons = () => {
     mainbuttons.appendChild(ZipcodeData)
 
     jobsBtn.innerHTML = "State Jobs"
+    jobsBtn.value = GovernmentJob
     FarmersMarkets.innerHTML = "Farmers Markets"
+    FarmersMarkets.value = FarmersMarketss
     LawEnforcement.innerHTML = 'LawEnforcement'
+    LawEnforcement.value=LawEnforcements
     moUnemployment.innerHTML = 'MO Unemployment'
     Usunemployment.innerHTML = 'US Unemployment'
     counties.innerHTML = 'Counties'
@@ -76,15 +79,23 @@ const populateJobs = (a) => {
 function Listener() {
     const btns = document.getElementsByTagName('button')
     for (let i = 0; i < btns.length; i++) {
+        
         btns[i].addEventListener('click', (x) => {
-            if(x.target.innerHTML === "State Jobs"){
-                document.getElementById('lable').innerHTML="Serach State Jobs"
-                x.target.style.backgroundColor="green"
-                search()
-            }else{
-                x.target.style.backgroundColor="red"
-            }
-         
+            document.getElementById('lable').innerHTML=`Search ${x.target.innerHTML}`
+            //x.target.style.backgroundColor="green"
+            search()
+
+
+            // if(x.target.innerHTML === "State Jobs"){
+            //     document.getElementById('lable').innerHTML=`Search ${x.target.innerHTML}`
+            //    // x.target.style.backgroundColor="green"
+            //     
+            // }else if(x.target.innerHTML === "Farmers Markets"){
+            //     //x.target.style.backgroundColor="green"
+            //     document.getElementById('lable').innerHTML=`Search ${x.target.innerHTML}`
+            // }else{
+            //     x.target.style.backgroundColor="red"
+            // }
         })
     }
 }
@@ -119,7 +130,7 @@ const serchResult = (x, y) => {
             if (foundResult.length === 0) {
                 let h3list = document.createElement('h3')
                 detailsSection.appendChild(h3list)
-                h3list.innerHTML = `Not found result for ${x}`
+                h3list.innerHTML = `Not found result for "${x}"`
             }
             for (let i = 0; i < j.length; i++) {
                 if (j[i].title !== x) {
@@ -133,7 +144,7 @@ const createjobList = (e, x) => {
 
     let uL = document.createElement('il'),
         lI = document.createElement('li')
-        aTag = document.createElement('a')
+    aTag = document.createElement('a')
 
     detailsSection.appendChild(uL)
     uL.appendChild(lI)
@@ -148,6 +159,4 @@ document.addEventListener('DOMContentLoaded', () => {
     getJobs(GovernmentJob)
 })
 
-// $(document).on("click",function(){
-//     $("h1").slideUp("slow",function (){animate({speed:0.1});});
-//   });
+
