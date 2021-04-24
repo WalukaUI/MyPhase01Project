@@ -36,7 +36,7 @@ const populateButtons = () => {
     jobsBtn.value = GovernmentJob
     FarmersMarkets.innerHTML = "Farmers Markets"
     FarmersMarkets.value = FarmersMarketss
-    LawEnforcement.innerHTML = 'LawEnforcement'
+    LawEnforcement.innerHTML = 'Law Enforcement Agencies'
     LawEnforcement.value = LawEnforcements
     moUnemployment.innerHTML = 'MO Unemployment'
     Usunemployment.innerHTML = 'US Unemployment'
@@ -178,13 +178,16 @@ const serchResult = (x, y) => {
                         foundResult.push(j[i])
                         populateJobs(j[i])
                     }
-                } else if (y === FarmersMarketss) {
+                } else if (y === FarmersMarketss ) {
                     if (j[i].city === x) {
                         foundResult.push(j[i])
                         populateFarmersdata(j[i])
                     }
                 } else if (y === LawEnforcements) {
-
+                    if (j[i].city === x) {
+                        foundResult.push(j[i])
+                        populateLawEnforcements(j[i])
+                    }
                 }
 
             }
