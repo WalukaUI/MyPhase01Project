@@ -9,7 +9,7 @@ const counties = "https://data.mo.gov/resource/byps-gsbw.json",
 
     mainbuttons = document.getElementById('mainbuttons'),
     detailsSection = document.getElementById("details"),
-    serchvalue = document.getElementById('allSerch'),
+    serchvalue = document.getElementById('allSearch'),
     formBtn = document.getElementById('submits')
 
 
@@ -117,18 +117,21 @@ const populateFarmersdata = (a) => {
 const populateLawEnforcements = (a) => {
     let div1 = document.createElement('div'),
         h3Tag = document.createElement('h3'),
+        h4Tag1 = document.createElement('h4')
         pTag = document.createElement('p'),
-        h4Tag = document.createElement('h4')
+        h4Tag2 = document.createElement('h4')
 
     detailsSection.appendChild(div1)
     div1.appendChild(h3Tag)
+    div1.appendChild(h4Tag1)
     div1.appendChild(pTag)
-    div1.appendChild(h4Tag)
+    div1.appendChild(h4Tag2)
 
     div1.className = 'moJobsDiv'
-    h3Tag.innerHTML = `${a.name}/${a.city}`
+    h3Tag.innerHTML = a.name
+    h4Tag1.innerHTML=`City Name: ${a.city}`
     pTag.innerHTML = `Contact Number: ${a.voice_number}`
-    h4Tag.innerHTML = `Address : ${a.street_address_2}`
+    h4Tag2.innerHTML = `Address : ${a.street_address_2}`
 }
 
 //create listner on click to main buttons and change InnerHTML in search input
@@ -140,26 +143,29 @@ function Listener() {
         btns[i].addEventListener('click', (x) => {
             document.getElementById('lable').innerHTML = `Search ${x.target.innerHTML}`
             let aPI = x.target.value
+            serchvalue.name=aPI
             detailsSection.innerHTML = ""
+            serchvalue.value=""
             getApiData(aPI)
-            search(aPI)
+            search()
         })
     }
 }
 
 // Taking search values 
 
-const search = (y) => {
-    console.log(y);
+const search = () => {
     formBtn.addEventListener('click', (e) => {
         e.preventDefault()
         let x = serchvalue.value
-        serchResult(x, y);
+        serchResult(x);
     })
 }
 
 // Flecting search values and calling functions to display results on DOM
-const serchResult = (x, y) => {
+const serchResult = (x) => {
+    let y=serchvalue.name
+    console.log(y)
     fetch(`${y}`, {
         method: 'GET',
         headers: {
@@ -178,7 +184,7 @@ const serchResult = (x, y) => {
                         foundResult.push(j[i])
                         populateJobs(j[i])
                     }
-                } else if (y === FarmersMarketss ) {
+                } else if (y === FarmersMarketss) {
                     if (j[i].city === x) {
                         foundResult.push(j[i])
                         populateFarmersdata(j[i])
@@ -192,35 +198,16 @@ const serchResult = (x, y) => {
 
             }
             if (foundResult.length === 0) {
-                let h3list = document.createElement('h3')
+                let h3list = document.createElement('h3'),
+                    resultImg = document.createElement('img')
+                detailsSection.appendChild(resultImg)
                 detailsSection.appendChild(h3list)
-                h3list.innerHTML = `Not found result for "${x}"`
-            }
-            for (let i = 0; i < j.length; i++) {
-                if (j[i].title !== x) {
-                    createjobList(j[i], x)
-                }
+
+                h3list.innerHTML = `Not Result Found  for "${x}"  SEARCH AGAIN`
+                resultImg.src = "https://media.giphy.com/media/keamSClApOmrii5HEt/giphy.gif"
             }
         })
 }
-
-// If search couldn't find any results
-
-const createjobList = (e) => {
-
-    let uL = document.createElement('il'),
-        lI = document.createElement('li')
-    aTag = document.createElement('a')
-
-    detailsSection.appendChild(uL)
-    uL.appendChild(lI)
-    lI.appendChild(aTag)
-
-    aTag.innerHTML = e.title
-    aTag.href = e.joburl.url
-    aTag.target = "blank"
-}
-
 
 
 //Starting function

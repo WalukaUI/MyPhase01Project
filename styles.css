@@ -1,8 +1,15 @@
 body{
     background-color: antiquewhite;
 }
+
 h1{
     text-align: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    font-family: cursive, sans-serif;
+}
+.topImg{
+    position: absolute;
 }
 #mainbuttons{
     text-align: left;
@@ -38,7 +45,7 @@ form{
     padding-top: 10px;
     padding-bottom: 10px;
 }
-#allSerch{
+#allSearch{
     width: 300px;
     height: 30px;
 }
