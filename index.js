@@ -249,6 +249,11 @@ const serchResult = (x) => {
                         foundResult.push(j[i])
                         populateUnemploymentRates(j[i])
                     }
+                }else if (y === mOjobCenters) {
+                    if (j[i].city === x) {
+                        foundResult.push(j[i])
+                        populateJobCenters(j[i])
+                    }
                 }
 
 
