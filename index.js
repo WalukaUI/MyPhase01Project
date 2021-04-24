@@ -76,6 +76,8 @@ function getApiData(a) {
                     populateJobCenters(e);
                 }else if(a===countiess){
                     populateCounties(e);
+                }else if(a===ZipcodeDatas){
+                    populateZips(e);
                 }
                 
             });
@@ -204,6 +206,26 @@ const populateCounties=(a)=> {
     pTag.innerHTML = `Code: ${a.fips}`
 }
 
+//Display Zipcode data of MO on DOM
+const populateZips=(a)=> {
+    let div1 = document.createElement('div'),
+        h3Tag = document.createElement('h3'),
+        h4Tag1 = document.createElement('h4')
+        pTag = document.createElement('p'),
+        h3Tag2 = document.createElement('h3')
+
+    detailsSection.appendChild(div1)
+    div1.appendChild(h3Tag)
+    div1.appendChild(h4Tag1)
+    div1.appendChild(pTag)
+    div1.appendChild(h3Tag2)
+
+    div1.className = 'moJobsDiv'
+    h3Tag.innerHTML = a.zcta5ce
+    h4Tag1.innerHTML=`Land Ac: ${a.aland}`
+    pTag.innerHTML = `Latitude: ${a.centroid.latitude} longitude: ${a.centroid.longitude}`
+}
+
 //create listner on click to main buttons and change InnerHTML in search input
 
 function Listener() {
@@ -278,6 +300,11 @@ const serchResult = (x) => {
                     if (j[i].name === x) {
                         foundResult.push(j[i])
                         populateCounties(j[i])
+                    }
+                }else if (y === ZipcodeDatas) {
+                    if (j[i].zcta5ce === x) {
+                        foundResult.push(j[i])
+                        populateZips(j[i])
                     }
                 }
 
