@@ -9,28 +9,9 @@ const counties = "https://data.mo.gov/resource/byps-gsbw.json",
 
     mainbuttons = document.getElementById('mainbuttons'),
     detailsSection = document.getElementById("details"),
-    serchvalue = document.getElementById('allSerch')
+    serchvalue = document.getElementById('allSerch'),
+    formBtn = document.getElementById('submits')
 
-//fletch govenment data on page start
-
-function getApiData(a) {
-    fetch(`${a}`, {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        }
-    })
-        .then(res => res.json())
-        .then(j => {
-            mainbuttons.innerHTML=""
-            populateButtons()
-            Listener()
-            j.forEach(e => {
-                populateJobs(e)
-            });
-        })
-}
 
 //create main buttons 
 
@@ -63,7 +44,37 @@ const populateButtons = () => {
     ZipcodeData.innerHTML = 'Zipcode Data'
 }
 
-//populate serch results on DOM
+//fletch  data 
+
+function getApiData(a) {
+    fetch(`${a}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    })
+        .then(res => res.json())
+        .then(j => {
+            mainbuttons.innerHTML=""
+            populateButtons()
+            Listener()
+            j.forEach(e => {
+                if(a===GovernmentJob){
+                    populateJobs(e)
+                }else if(a===FarmersMarketss){
+                    populateFarmersdata(e)
+                }else if(a===LawEnforcements){
+                    populateLawEnforcements(e)
+                    console.log(e);
+                }
+                
+            });
+        })
+}
+
+
+//Display governmentJob results on DOM
 
 const populateJobs = (a) => {
     let div1 = document.createElement('div'),
@@ -83,6 +94,44 @@ const populateJobs = (a) => {
     h4Tag.innerHTML = `${a.salarybasis} : ${a.salarystart}`
 }
 
+//Display Farmersdata results on DOM
+const populateFarmersdata=(a)=>{
+    let div1 = document.createElement('div'),
+        h3Tag = document.createElement('h3'),
+        pTag = document.createElement('p'),
+        h4Tag = document.createElement('h4')
+
+    detailsSection.appendChild(div1)
+    div1.appendChild(h3Tag)
+    div1.appendChild(pTag)
+    div1.appendChild(h4Tag)
+
+    div1.className = 'moJobsDiv'
+    h3Tag.innerHTML = `City: ${a.city}`
+    pTag.innerHTML = `Company: ${a.business_name}`
+    pTag.maxlength = "10"
+    h4Tag.innerHTML = a.location_description
+
+}
+
+//Display LawEnforcements results on DOM
+const populateLawEnforcements= (a) => {
+    let div1 = document.createElement('div'),
+        h3Tag = document.createElement('h3'),
+        pTag = document.createElement('p'),
+        h4Tag = document.createElement('h4')
+
+    detailsSection.appendChild(div1)
+    div1.appendChild(h3Tag)
+    div1.appendChild(pTag)
+    div1.appendChild(h4Tag)
+
+    div1.className = 'moJobsDiv'
+    h3Tag.innerHTML = `${a.name}/${a.city}`
+    pTag.innerHTML = `Contact Number: ${a.voice_number}`
+    h4Tag.innerHTML = `Address : ${a.street_address_2}`
+}
+
 //create listner on click on main buttons and change InnerHTML in search
 
 function Listener() {
@@ -93,19 +142,14 @@ function Listener() {
             document.getElementById('lable').innerHTML=`Search ${x.target.innerHTML}`
             let aPI=x.target.value
             detailsSection.innerHTML=""
-            if(x.target.value===FarmersMarketss){
-                console.log('FarmersMarketss');
-               // FarmersMarketData(aPI)
-            }else if(x.target.value===LawEnforcements){
-                console.log("LawEnforcements");
-            }
+            getApiData(aPI)
             search(aPI)
         })
     }
 }
 
 // Taking search values 
-const formBtn = document.getElementById('submits')
+
 const search = (y) => {
     formBtn.addEventListener('click', (e) => {
         e.preventDefault()
