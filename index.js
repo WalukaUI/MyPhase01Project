@@ -4,7 +4,7 @@ const countiess = "https://data.mo.gov/resource/byps-gsbw.json",
     ZipcodeDatas = "https://data.mo.gov/resource/8ejy-sj4q.json",
     FarmersMarketss = "https://data.mo.gov/resource/89zi-f2wa.json",
     UnemploymentRates = "https://data.mo.gov/resource/uaxb-77vv.json",
-    uSUnemploymentRates = "https://data.mo.gov/resource/fks3-5x8k.json",
+    mOjobCenters = "https://data.mo.gov/resource/p2ie-br32.json",
     GovernmentJob = "https://data.mo.gov/resource/83mm-j7ms.json",
 
     mainbuttons = document.getElementById('mainbuttons'),
@@ -17,7 +17,7 @@ const countiess = "https://data.mo.gov/resource/byps-gsbw.json",
 
 const populateButtons = () => {
     let jobsBtn = document.createElement('button'),
-        Usunemployment = document.createElement('button'),
+        jobCenters = document.createElement('button'),
         moUnemployment = document.createElement('button'),
         FarmersMarkets = document.createElement('button'),
         ZipcodeData = document.createElement('button'),
@@ -28,7 +28,7 @@ const populateButtons = () => {
     mainbuttons.appendChild(FarmersMarkets)
     mainbuttons.appendChild(LawEnforcement)
     mainbuttons.appendChild(moUnemployment)
-    mainbuttons.appendChild(Usunemployment)
+    mainbuttons.appendChild(jobCenters)
     mainbuttons.appendChild(counties)
     mainbuttons.appendChild(ZipcodeData)
 
@@ -40,8 +40,8 @@ const populateButtons = () => {
     LawEnforcement.value = LawEnforcements
     moUnemployment.innerHTML = 'MO Unemployment Rate'
     moUnemployment.value=UnemploymentRates
-    Usunemployment.innerHTML = 'US Unemployment Rate'
-    Usunemployment.value=uSUnemploymentRates
+    jobCenters.innerHTML = 'MO Job Centers'
+    jobCenters.value=mOjobCenters
     counties.innerHTML = 'Counties of MO'
     counties.value=countiess
     ZipcodeData.innerHTML = 'MO Zipcode Data'
@@ -72,8 +72,8 @@ function getApiData(a) {
                     populateLawEnforcements(e)
                 }else if(a===UnemploymentRates){
                    populateUnemploymentRates(e)    
-                }else if(a===uSUnemploymentRates){
-console.log(e);
+                }else if(a===mOjobCenters){
+                    populateJobCenters(e);
                 }
 
             });
@@ -162,6 +162,26 @@ const populateUnemploymentRates=(a)=> {
     h3Tag2.innerHTML = `Laborforce : ${a.laborforce}`
 }
 
+//Display Job Centers data of MO on DOM
+const populateJobCenters=(a)=> {
+    let div1 = document.createElement('div'),
+        h3Tag = document.createElement('h3'),
+        h4Tag1 = document.createElement('h4')
+        pTag = document.createElement('p'),
+        h3Tag2 = document.createElement('h3')
+
+    detailsSection.appendChild(div1)
+    div1.appendChild(h3Tag)
+    div1.appendChild(h4Tag1)
+    div1.appendChild(pTag)
+    div1.appendChild(h3Tag2)
+
+    div1.className = 'moJobsDiv'
+    h3Tag.innerHTML = a.city
+    h4Tag1.innerHTML=`Contact #: ${a.phone}`
+    pTag.innerHTML = `Center Name: ${a.career_center_name}`
+    h3Tag2.innerHTML = `Address : ${a.address1}`
+}
 
 
 //create listner on click to main buttons and change InnerHTML in search input
