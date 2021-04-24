@@ -117,7 +117,7 @@ const populateFarmersdata = (a) => {
     div1.appendChild(pTag)
     div1.appendChild(h4Tag)
 
-    div1.className = 'moJobsDiv'
+    div1.className = 'moFarmersDiv'
     h3Tag.innerHTML = `City: ${a.city}`
     pTag.innerHTML = `Company: ${a.business_name}`
     pTag.maxlength = "10"
@@ -139,7 +139,7 @@ const populateLawEnforcements = (a) => {
     div1.appendChild(pTag)
     div1.appendChild(h4Tag2)
 
-    div1.className = 'moJobsDiv'
+    div1.className = 'moLawDiv'
     h3Tag.innerHTML = a.name
     h4Tag1.innerHTML=`City Name: ${a.city}`
     pTag.innerHTML = `Contact Number: ${a.voice_number}`
@@ -159,7 +159,7 @@ const populateUnemploymentRates=(a)=> {
     div1.appendChild(pTag)
     div1.appendChild(h3Tag2)
 
-    div1.className = 'moJobsDiv'
+    div1.className = 'moUnEmpDiv'
     h3Tag.innerHTML = a.area_name
     h4Tag1.innerHTML=`Rate: ${a.unemployment_rate}`
     pTag.innerHTML = `Year: ${a.year}`
@@ -180,7 +180,7 @@ const populateJobCenters=(a)=> {
     div1.appendChild(pTag)
     div1.appendChild(h3Tag2)
 
-    div1.className = 'moJobsDiv'
+    div1.className = 'moJobCenDiv'
     h3Tag.innerHTML = a.city
     h4Tag1.innerHTML=`Contact #: ${a.phone}`
     pTag.innerHTML = `Center Name: ${a.career_center_name}`
@@ -200,7 +200,7 @@ const populateCounties=(a)=> {
     div1.appendChild(pTag)
     div1.appendChild(h3Tag2)
 
-    div1.className = 'moJobsDiv'
+    div1.className = 'moCountDiv'
     h3Tag.innerHTML = a.name
     h4Tag1.innerHTML=`County Seat: ${a.cnty_seat}`
     pTag.innerHTML = `Code: ${a.fips}`

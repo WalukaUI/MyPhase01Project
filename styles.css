@@ -1,5 +1,7 @@
 body{
-    background-color: antiquewhite;
+    background-image: url(./images/bk.jpg);
+    background-color: #faebd7;
+
 }
 
 h1{
@@ -14,26 +16,74 @@ h1{
 #mainbuttons{
     text-align: left;
     display: flex;
+    align-content: center;
+    background-color: lightgreen;
 }
-button{
+/* button{
+    margin-left:10px;
     height: 80px;
     width: 200px;
     background-color: "";
-}
+} */
 
+button {
+	box-shadow:inset 0px 0px 14px -3px #f2fadc;
+	background:linear-gradient(to bottom, #dbe6c4 5%, #9ba892 100%);
+	background-color:#dbe6c4;
+	border-radius:6px;
+	border:1px solid #b2b8ad;
+	display:inline-block;
+	cursor:pointer;
+	color:#292e25;
+	font-weight:bold;
+    width: 212px;
+	padding:24px 5px;
+
+}
+button:hover {
+	background:linear-gradient(to bottom, #9ba892 5%, #dbe6c4 100%);
+	background-color:#9ba892;
+}
+button:active {
+	position:relative;
+	top:1px;
+}
 .hButtons{
     height: 80px;
     width: 200px;
     background-color: ""; 
 }
-.moJobsDiv{
-    background-color: rgb(142, 216, 245);
-    border: 1px solid black;
+#details div{
+    border: 1px solid #000000;
     border-radius: 10px;
+    min-width: 20%;
+    max-width: 40%;
+    margin-left: 3%;
+    margin-top: 2%;
     height: 170px;
     text-align: center;
     position: relative;
     display: inline-table;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.moJobsDiv{
+    background-color: #a1e7ca;
+}
+.moLawDiv{
+    background-color: #d8cfe6;
+}
+.moFarmersDiv{
+    background-color: #d5ecc2;
+}
+.moUnEmpDiv{
+    background-color: #eeebdd;
+}
+.moJobCenDiv{
+    background-color: #e0aa68;
+}
+.moCountDiv{
+    background-color: #ccffbd;
 }
 p{
     overflow: hidden;
@@ -42,12 +92,11 @@ p{
     white-space: nowrap;
 }
 form{
-    padding-top: 10px;
-    padding-bottom: 10px;
+    margin-top: 20px;
 }
 #submits{
     height: 34px;
-    background-color: aquamarine;
+    background-color: #7fffd4;
 }
 #allSearch{
     width: 300px;
