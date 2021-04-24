@@ -1,7 +1,7 @@
 
-const counties = "https://data.mo.gov/resource/byps-gsbw.json",
+const countiess = "https://data.mo.gov/resource/byps-gsbw.json",
     LawEnforcements = "https://data.mo.gov/resource/cgbu-k38b.json",
-    ZipcodeData = "https://data.mo.gov/resource/8ejy-sj4q.json",
+    ZipcodeDatas = "https://data.mo.gov/resource/8ejy-sj4q.json",
     FarmersMarketss = "https://data.mo.gov/resource/89zi-f2wa.json",
     UnemploymentRates = "https://data.mo.gov/resource/uaxb-77vv.json",
     uSUnemploymentRates = "https://data.mo.gov/resource/fks3-5x8k.json",
@@ -39,9 +39,13 @@ const populateButtons = () => {
     LawEnforcement.innerHTML = 'Law Enforcement Agencies'
     LawEnforcement.value = LawEnforcements
     moUnemployment.innerHTML = 'MO Unemployment'
+    moUnemployment.value=UnemploymentRates
     Usunemployment.innerHTML = 'US Unemployment'
+    Usunemployment.value=uSUnemploymentRates
     counties.innerHTML = 'Counties'
+    counties.value=countiess
     ZipcodeData.innerHTML = 'Zipcode Data'
+    ZipcodeData.value=ZipcodeDatas
 }
 
 //fletch  data 
@@ -66,6 +70,10 @@ function getApiData(a) {
                     populateFarmersdata(e)
                 } else if (a === LawEnforcements) {
                     populateLawEnforcements(e)
+                }else if(a===UnemploymentRates){
+                   populateUnemploymentRates(e)    
+                }else if(a===uSUnemploymentRates){
+console.log(e);
                 }
 
             });
@@ -133,6 +141,28 @@ const populateLawEnforcements = (a) => {
     pTag.innerHTML = `Contact Number: ${a.voice_number}`
     h4Tag2.innerHTML = `Address : ${a.street_address_2}`
 }
+//Display Unemployment data of MO on DOM
+const populateUnemploymentRates=(a)=> {
+    let div1 = document.createElement('div'),
+        h3Tag = document.createElement('h3'),
+        h4Tag1 = document.createElement('h4')
+        pTag = document.createElement('p'),
+        h3Tag2 = document.createElement('h3')
+
+    detailsSection.appendChild(div1)
+    div1.appendChild(h3Tag)
+    div1.appendChild(h4Tag1)
+    div1.appendChild(pTag)
+    div1.appendChild(h3Tag2)
+
+    div1.className = 'moJobsDiv'
+    h3Tag.innerHTML = a.area_name
+    h4Tag1.innerHTML=`Rate: ${a.unemployment_rate}`
+    pTag.innerHTML = `Year: ${a.year}`
+    h3Tag2.innerHTML = `Laborforce : ${a.laborforce}`
+}
+
+
 
 //create listner on click to main buttons and change InnerHTML in search input
 

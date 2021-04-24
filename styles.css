@@ -45,6 +45,10 @@ form{
     padding-top: 10px;
     padding-bottom: 10px;
 }
+#submits{
+    height: 34px;
+    background-color: aquamarine;
+}
 #allSearch{
     width: 300px;
     height: 30px;
