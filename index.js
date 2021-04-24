@@ -37,7 +37,7 @@ const populateButtons = () => {
     FarmersMarkets.innerHTML = "Farmers Markets"
     FarmersMarkets.value = FarmersMarketss
     LawEnforcement.innerHTML = 'LawEnforcement'
-    LawEnforcement.value=LawEnforcements
+    LawEnforcement.value = LawEnforcements
     moUnemployment.innerHTML = 'MO Unemployment'
     Usunemployment.innerHTML = 'US Unemployment'
     counties.innerHTML = 'Counties'
@@ -56,19 +56,18 @@ function getApiData(a) {
     })
         .then(res => res.json())
         .then(j => {
-            mainbuttons.innerHTML=""
+            mainbuttons.innerHTML = ""
             populateButtons()
             Listener()
             j.forEach(e => {
-                if(a===GovernmentJob){
+                if (a === GovernmentJob) {
                     populateJobs(e)
-                }else if(a===FarmersMarketss){
+                } else if (a === FarmersMarketss) {
                     populateFarmersdata(e)
-                }else if(a===LawEnforcements){
+                } else if (a === LawEnforcements) {
                     populateLawEnforcements(e)
-                    console.log(e);
                 }
-                
+
             });
         })
 }
@@ -95,7 +94,7 @@ const populateJobs = (a) => {
 }
 
 //Display Farmersdata results on DOM
-const populateFarmersdata=(a)=>{
+const populateFarmersdata = (a) => {
     let div1 = document.createElement('div'),
         h3Tag = document.createElement('h3'),
         pTag = document.createElement('p'),
@@ -115,7 +114,7 @@ const populateFarmersdata=(a)=>{
 }
 
 //Display LawEnforcements results on DOM
-const populateLawEnforcements= (a) => {
+const populateLawEnforcements = (a) => {
     let div1 = document.createElement('div'),
         h3Tag = document.createElement('h3'),
         pTag = document.createElement('p'),
@@ -132,16 +131,16 @@ const populateLawEnforcements= (a) => {
     h4Tag.innerHTML = `Address : ${a.street_address_2}`
 }
 
-//create listner on click on main buttons and change InnerHTML in search
+//create listner on click to main buttons and change InnerHTML in search input
 
 function Listener() {
     const btns = document.getElementsByTagName('button')
     for (let i = 0; i < btns.length; i++) {
-        
+
         btns[i].addEventListener('click', (x) => {
-            document.getElementById('lable').innerHTML=`Search ${x.target.innerHTML}`
-            let aPI=x.target.value
-            detailsSection.innerHTML=""
+            document.getElementById('lable').innerHTML = `Search ${x.target.innerHTML}`
+            let aPI = x.target.value
+            detailsSection.innerHTML = ""
             getApiData(aPI)
             search(aPI)
         })
@@ -151,10 +150,10 @@ function Listener() {
 // Taking search values 
 
 const search = (y) => {
+    console.log(y);
     formBtn.addEventListener('click', (e) => {
         e.preventDefault()
         let x = serchvalue.value
-        console.log(y);
         serchResult(x, y);
     })
 }
@@ -172,12 +171,22 @@ const serchResult = (x, y) => {
         .then(j => {
             detailsSection.innerHTML = ""
             let foundResult = []
+            foundResult.length = 0
             for (let i = 0; i < j.length; i++) {
-                if (j[i].title === x) {
-                    foundResult.length = 0
-                    foundResult.push(j[i])
-                    populateJobs(j[i])
+                if (y === GovernmentJob) {
+                    if (j[i].title === x) {
+                        foundResult.push(j[i])
+                        populateJobs(j[i])
+                    }
+                } else if (y === FarmersMarketss) {
+                    if (j[i].city === x) {
+                        foundResult.push(j[i])
+                        populateFarmersdata(j[i])
+                    }
+                } else if (y === LawEnforcements) {
+
                 }
+
             }
             if (foundResult.length === 0) {
                 let h3list = document.createElement('h3')
@@ -194,7 +203,7 @@ const serchResult = (x, y) => {
 
 // If search couldn't find any results
 
-const createjobList = (e, x) => {
+const createjobList = (e) => {
 
     let uL = document.createElement('il'),
         lI = document.createElement('li')
