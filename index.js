@@ -38,13 +38,13 @@ const populateButtons = () => {
     FarmersMarkets.value = FarmersMarketss
     LawEnforcement.innerHTML = 'Law Enforcement Agencies'
     LawEnforcement.value = LawEnforcements
-    moUnemployment.innerHTML = 'MO Unemployment'
+    moUnemployment.innerHTML = 'MO Unemployment Rate'
     moUnemployment.value=UnemploymentRates
-    Usunemployment.innerHTML = 'US Unemployment'
+    Usunemployment.innerHTML = 'US Unemployment Rate'
     Usunemployment.value=uSUnemploymentRates
-    counties.innerHTML = 'Counties'
+    counties.innerHTML = 'Counties of MO'
     counties.value=countiess
-    ZipcodeData.innerHTML = 'Zipcode Data'
+    ZipcodeData.innerHTML = 'MO Zipcode Data'
     ZipcodeData.value=ZipcodeDatas
 }
 
@@ -224,7 +224,13 @@ const serchResult = (x) => {
                         foundResult.push(j[i])
                         populateLawEnforcements(j[i])
                     }
+                }else if (y === UnemploymentRates) {
+                    if (j[i].area_name === x) {
+                        foundResult.push(j[i])
+                        populateUnemploymentRates(j[i])
+                    }
                 }
+
 
             }
             if (foundResult.length === 0) {
