@@ -74,8 +74,10 @@ function getApiData(a) {
                    populateUnemploymentRates(e)    
                 }else if(a===mOjobCenters){
                     populateJobCenters(e);
+                }else if(a===countiess){
+                    populateCounties(e);
                 }
-
+                
             });
         })
 }
@@ -182,7 +184,25 @@ const populateJobCenters=(a)=> {
     pTag.innerHTML = `Center Name: ${a.career_center_name}`
     h3Tag2.innerHTML = `Address : ${a.address1}`
 }
+//Display Counties data of MO on DOM
+const populateCounties=(a)=> {
+    let div1 = document.createElement('div'),
+        h3Tag = document.createElement('h3'),
+        h4Tag1 = document.createElement('h4')
+        pTag = document.createElement('p'),
+        h3Tag2 = document.createElement('h3')
 
+    detailsSection.appendChild(div1)
+    div1.appendChild(h3Tag)
+    div1.appendChild(h4Tag1)
+    div1.appendChild(pTag)
+    div1.appendChild(h3Tag2)
+
+    div1.className = 'moJobsDiv'
+    h3Tag.innerHTML = a.name
+    h4Tag1.innerHTML=`County Seat: ${a.cnty_seat}`
+    pTag.innerHTML = `Code: ${a.fips}`
+}
 
 //create listner on click to main buttons and change InnerHTML in search input
 
@@ -254,9 +274,14 @@ const serchResult = (x) => {
                         foundResult.push(j[i])
                         populateJobCenters(j[i])
                     }
+                }else if (y === countiess) {
+                    if (j[i].name === x) {
+                        foundResult.push(j[i])
+                        populateCounties(j[i])
+                    }
                 }
 
-
+                
             }
             if (foundResult.length === 0) {
                 let h3list = document.createElement('h3'),
