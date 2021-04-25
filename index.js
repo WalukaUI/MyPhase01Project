@@ -60,53 +60,24 @@ function getApiData(a) {
             populateButtons()
             Listener()
             j.forEach(e => {
-                if (a === GovernmentJob) {
-                    populateJobs(e, a)
-                } else if (a === FarmersMarketss) {
-                    populateJobs(e, a)
-                } else if (a === LawEnforcements) {
-                    populateLawEnforcements(e)
-                } else if (a === UnemploymentRates) {
-                    populateUnemploymentRates(e)
-                } else if (a === mOjobCenters) {
-                    populateJobCenters(e);
-                } else if (a === countiess) {
-                    populateCounties(e);
-                } else if (a === ZipcodeDatas) {
-                    populateZips(e);
-                }
+                populateJobs(e, a)
             });
         })
 }
 
-//Display governmentJob results on DOM
-// const populateJobs = (a) => {
-//     let div1 = document.createElement('div'),
-//         h3Tag = document.createElement('h3'),
-//         pTag = document.createElement('p'),
-//         h4Tag = document.createElement('h4')
-
-//     detailsSection.appendChild(div1)
-//     div1.appendChild(h3Tag)
-//     div1.appendChild(pTag)
-//     div1.appendChild(h4Tag)
-
-//     div1.className = 'moJobsDiv'
-//     h3Tag.innerHTML = a.title
-//     pTag.innerHTML = a.jobdescription
-//     pTag.maxlength = "10"
-//     h4Tag.innerHTML = `${a.salarybasis} : ${a.salarystart}`
-// }
 const populateJobs = (a, b) => {
     let div1 = document.createElement('div'),
         h3Tag = document.createElement('h3'),
         pTag = document.createElement('p'),
         h4Tag = document.createElement('h4')
+    pTag2 = document.createElement('p')
 
     detailsSection.appendChild(div1)
-    let x = div1.appendChild(h3Tag)
-    let y = div1.appendChild(pTag)
-    let z = div1.appendChild(h4Tag)
+    div1.appendChild(h3Tag)
+    div1.appendChild(pTag)
+    div1.appendChild(h4Tag)
+    div1.appendChild(pTag2)
+
     if (b === GovernmentJob) {
         div1.className = 'moJobsDiv'
         h3Tag.innerHTML = a.title
@@ -119,132 +90,42 @@ const populateJobs = (a, b) => {
         pTag.innerHTML = `Company: ${a.business_name}`
         pTag.maxlength = "10"
         h4Tag.innerHTML = a.location_description
+    } if (b === LawEnforcements) {
+        div1.className = 'moLawDiv'
+        h3Tag.innerHTML = a.name
+        h4Tag.innerHTML = `City Name: ${a.city}`
+        pTag.innerHTML = `Contact Number: ${a.voice_number}`
+        pTag2.innerHTML = `Address : ${a.street_address_2}`
+    }
+    else if (b === UnemploymentRates) {
+        div1.className = 'moUnEmpDiv'
+        h3Tag.innerHTML = a.area_name
+        h4Tag.innerHTML = `Rate: ${a.unemployment_rate}`
+        pTag.innerHTML = `Year: ${a.year}`
+        pTag2.innerHTML = `Laborforce : ${a.laborforce}`
+    }
+    else if (b === mOjobCenters) {
+        div1.className = 'moJobCenDiv'
+        h3Tag.innerHTML = a.city
+        h4Tag.innerHTML = `Contact #: ${a.phone}`
+        pTag.innerHTML = `Center Name: ${a.career_center_name}`
+        pTag2.innerHTML = `Address : ${a.address1}`
+    }
+    else if (b === countiess) {
+        div1.className = 'moCountDiv'
+        h3Tag.innerHTML = a.name
+        h4Tag.innerHTML = `County Seat: ${a.cnty_seat}`
+        pTag.innerHTML = `Code: ${a.fips}`
+    }
+    else if (b === ZipcodeDatas) {
+        div1.className = 'moZipDiv'
+        h3Tag.innerHTML = a.zcta5ce
+        h4Tag.innerHTML = `Land Ac: ${a.aland}`
+        pTag.innerHTML = `Latitude: ${a.centroid.latitude} longitude: ${a.centroid.longitude}`
     }
 }
 
-
-//Display Farmersdata results on DOM
-// const populateFarmersdata = (a) => {
-//     let div1 = document.createElement('div'),
-//         h3Tag = document.createElement('h3'),
-//         pTag = document.createElement('p'),
-//         h4Tag = document.createElement('h4')
-
-//     detailsSection.appendChild(div1)
-//     div1.appendChild(h3Tag)
-//     div1.appendChild(pTag)
-//     div1.appendChild(h4Tag)
-
-//     div1.className = 'moFarmersDiv'
-//     h3Tag.innerHTML = `City: ${a.city}`
-//     pTag.innerHTML = `Company: ${a.business_name}`
-//     pTag.maxlength = "10"
-//     h4Tag.innerHTML = a.location_description
-// }
-
-//Display LawEnforcements results on DOM
-const populateLawEnforcements = (a) => {
-    let div1 = document.createElement('div'),
-        h3Tag = document.createElement('h3'),
-        h4Tag1 = document.createElement('h4')
-    pTag = document.createElement('p'),
-        h4Tag2 = document.createElement('h4')
-
-    detailsSection.appendChild(div1)
-    div1.appendChild(h3Tag)
-    div1.appendChild(h4Tag1)
-    div1.appendChild(pTag)
-    div1.appendChild(h4Tag2)
-
-    div1.className = 'moLawDiv'
-    h3Tag.innerHTML = a.name
-    h4Tag1.innerHTML = `City Name: ${a.city}`
-    pTag.innerHTML = `Contact Number: ${a.voice_number}`
-    h4Tag2.innerHTML = `Address : ${a.street_address_2}`
-}
-//Display Unemployment data of MO on DOM
-const populateUnemploymentRates = (a) => {
-    let div1 = document.createElement('div'),
-        h3Tag = document.createElement('h3'),
-        h4Tag1 = document.createElement('h4')
-    pTag = document.createElement('p'),
-        h3Tag2 = document.createElement('h3')
-
-    detailsSection.appendChild(div1)
-    div1.appendChild(h3Tag)
-    div1.appendChild(h4Tag1)
-    div1.appendChild(pTag)
-    div1.appendChild(h3Tag2)
-
-    div1.className = 'moUnEmpDiv'
-    h3Tag.innerHTML = a.area_name
-    h4Tag1.innerHTML = `Rate: ${a.unemployment_rate}`
-    pTag.innerHTML = `Year: ${a.year}`
-    h3Tag2.innerHTML = `Laborforce : ${a.laborforce}`
-}
-
-//Display Job Centers data of MO on DOM
-const populateJobCenters = (a) => {
-    let div1 = document.createElement('div'),
-        h3Tag = document.createElement('h3'),
-        h4Tag1 = document.createElement('h4')
-    pTag = document.createElement('p'),
-        h3Tag2 = document.createElement('h3')
-
-    detailsSection.appendChild(div1)
-    div1.appendChild(h3Tag)
-    div1.appendChild(h4Tag1)
-    div1.appendChild(pTag)
-    div1.appendChild(h3Tag2)
-
-    div1.className = 'moJobCenDiv'
-    h3Tag.innerHTML = a.city
-    h4Tag1.innerHTML = `Contact #: ${a.phone}`
-    pTag.innerHTML = `Center Name: ${a.career_center_name}`
-    h3Tag2.innerHTML = `Address : ${a.address1}`
-}
-//Display Counties data of MO on DOM
-const populateCounties = (a) => {
-    let div1 = document.createElement('div'),
-        h3Tag = document.createElement('h3'),
-        h4Tag1 = document.createElement('h4')
-    pTag = document.createElement('p'),
-        h3Tag2 = document.createElement('h3')
-
-    detailsSection.appendChild(div1)
-    div1.appendChild(h3Tag)
-    div1.appendChild(h4Tag1)
-    div1.appendChild(pTag)
-    div1.appendChild(h3Tag2)
-
-    div1.className = 'moCountDiv'
-    h3Tag.innerHTML = a.name
-    h4Tag1.innerHTML = `County Seat: ${a.cnty_seat}`
-    pTag.innerHTML = `Code: ${a.fips}`
-}
-
-//Display Zipcode data of MO on DOM
-const populateZips = (a) => {
-    let div1 = document.createElement('div'),
-        h3Tag = document.createElement('h3'),
-        h4Tag1 = document.createElement('h4')
-    pTag = document.createElement('p'),
-        h3Tag2 = document.createElement('h3')
-
-    detailsSection.appendChild(div1)
-    div1.appendChild(h3Tag)
-    div1.appendChild(h4Tag1)
-    div1.appendChild(pTag)
-    div1.appendChild(h3Tag2)
-
-    div1.className = 'moZipDiv'
-    h3Tag.innerHTML = a.zcta5ce
-    h4Tag1.innerHTML = `Land Ac: ${a.aland}`
-    pTag.innerHTML = `Latitude: ${a.centroid.latitude} longitude: ${a.centroid.longitude}`
-}
-
 //create listner on click to main buttons and change InnerHTML in search input
-
 function Listener() {
     const btns = document.getElementsByTagName('button')
     for (let i = 0; i < btns.length; i++) {
@@ -273,7 +154,6 @@ const search = () => {
 // Flecting search values and calling functions to display results on DOM
 const serchResult = (x) => {
     let y = serchvalue.name
-    console.log(y)
     fetch(`${y}`, {
         method: 'GET',
         headers: {
@@ -290,37 +170,37 @@ const serchResult = (x) => {
                 if (y === GovernmentJob) {
                     if (j[i].title === x) {
                         foundResult.push(j[i])
-                        populateJobs(j[i])
+                        populateJobs(j[i], y)
                     }
                 } else if (y === FarmersMarketss) {
                     if (j[i].city === x) {
                         foundResult.push(j[i])
-                        populateFarmersdata(j[i])
+                        populateJobs(j[i], y)
                     }
                 } else if (y === LawEnforcements) {
                     if (j[i].city === x) {
                         foundResult.push(j[i])
-                        populateLawEnforcements(j[i])
+                        populateJobs(j[i], y)
                     }
                 } else if (y === UnemploymentRates) {
                     if (j[i].area_name === x) {
                         foundResult.push(j[i])
-                        populateUnemploymentRates(j[i])
+                        populateJobs(j[i], y)
                     }
                 } else if (y === mOjobCenters) {
                     if (j[i].city === x) {
                         foundResult.push(j[i])
-                        populateJobCenters(j[i])
+                        populateJobs(j[i], y)
                     }
                 } else if (y === countiess) {
                     if (j[i].name === x) {
                         foundResult.push(j[i])
-                        populateCounties(j[i])
+                        populateJobs(j[i], y)
                     }
                 } else if (y === ZipcodeDatas) {
                     if (j[i].zcta5ce === x) {
                         foundResult.push(j[i])
-                        populateZips(j[i])
+                        populateJobs(j[i], y)
                     }
                 }
             }

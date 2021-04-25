@@ -23,7 +23,6 @@ h1 span:first-child {
     text-align: left;
     display: flex;
     align-content: center;
-    background-color: lightgreen;
 }
 button {
 	box-shadow:inset 0px 0px 14px -3px #f2fadc;
