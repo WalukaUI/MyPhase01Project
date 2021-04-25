@@ -207,11 +207,13 @@ const serchResult = (x) => {
             if (foundResult.length === 0) {
                 let h3list = document.createElement('h3'),
                     resultImg = document.createElement('img')
+
                 detailsSection.appendChild(resultImg)
                 detailsSection.appendChild(h3list)
 
-                h3list.innerHTML = `Not Result Found  for "${x}"  SEARCH AGAIN`
+                h3list.innerHTML = `No Result Found  for "${x}"  SEARCH AGAIN`
                 resultImg.src = "https://media.giphy.com/media/keamSClApOmrii5HEt/giphy.gif"
+                h3list.className='notFound'
             }
         })
 }
