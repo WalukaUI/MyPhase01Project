@@ -1,17 +1,23 @@
 body{
     background-image: url(./images/bk.jpg);
     background-color: #faebd7;
-
 }
-
-h1{
+h1{ 
+    font-size: 4rem;
+	font-weight: 700;
+    color: lightgrey;
     text-align: center;
-    padding-top: 60px;
-    padding-bottom: 60px;
-    font-family: cursive, sans-serif;
+    margin-bottom: 50px;
+}
+h1:hover span {
+	border-bottom: 3px solid whitesmoke;
+}
+h1 span:first-child {
+	font-weight: 300;
 }
 .topImg{
     position: absolute;
+    width: 200px;
 }
 #mainbuttons{
     text-align: left;
@@ -19,13 +25,6 @@ h1{
     align-content: center;
     background-color: lightgreen;
 }
-/* button{
-    margin-left:10px;
-    height: 80px;
-    width: 200px;
-    background-color: "";
-} */
-
 button {
 	box-shadow:inset 0px 0px 14px -3px #f2fadc;
 	background:linear-gradient(to bottom, #dbe6c4 5%, #9ba892 100%);
@@ -38,7 +37,6 @@ button {
 	font-weight:bold;
     width: 212px;
 	padding:24px 5px;
-
 }
 button:hover {
 	background:linear-gradient(to bottom, #9ba892 5%, #dbe6c4 100%);
@@ -53,6 +51,21 @@ button:active {
     width: 200px;
     background-color: ""; 
 }
+.myButton {
+	box-shadow: 0px 0px 0px 2px #9fb4f2;
+	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+	background-color:#7892c2;
+	border-radius:10px;
+	border:1px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:19px;
+	padding:12px 37px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #283966;
+}
 #details div{
     border: 1px solid #000000;
     border-radius: 10px;
@@ -61,6 +74,7 @@ button:active {
     margin-left: 3%;
     margin-top: 2%;
     height: 170px;
+    color: whitesmoke;
     text-align: center;
     position: relative;
     display: inline-table;
@@ -68,22 +82,25 @@ button:active {
     padding-right: 10px;
 }
 .moJobsDiv{
-    background-color: #a1e7ca;
+    background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
 }
 .moLawDiv{
-    background-color: #d8cfe6;
+    background:linear-gradient(to bottom, #4f77c2 5%, #247be6 100%);
 }
 .moFarmersDiv{
-    background-color: #d5ecc2;
+    background:linear-gradient(to bottom, #2b426e 5%, #0f3f79 100%);
 }
 .moUnEmpDiv{
-    background-color: #eeebdd;
+    background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
 }
 .moJobCenDiv{
-    background-color: #e0aa68;
+    background:linear-gradient(to bottom, #6598f7 5%, #2585fa 100%);
 }
 .moCountDiv{
-    background-color: #ccffbd;
+    background:linear-gradient(to bottom, #2b426e 5%, #0f3f79 100%);
+}
+.moZipDiv{
+    background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%)
 }
 p{
     overflow: hidden;
@@ -93,6 +110,7 @@ p{
 }
 form{
     margin-top: 20px;
+    color: rgb(247, 238, 247);
 }
 #submits{
     height: 34px;
@@ -102,4 +120,3 @@ form{
     width: 300px;
     height: 30px;
 }
-

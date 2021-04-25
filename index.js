@@ -220,7 +220,7 @@ const populateZips=(a)=> {
     div1.appendChild(pTag)
     div1.appendChild(h3Tag2)
 
-    div1.className = 'moJobsDiv'
+    div1.className = 'moZipDiv'
     h3Tag.innerHTML = a.zcta5ce
     h4Tag1.innerHTML=`Land Ac: ${a.aland}`
     pTag.innerHTML = `Latitude: ${a.centroid.latitude} longitude: ${a.centroid.longitude}`
