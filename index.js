@@ -45,7 +45,7 @@ const populateButtons = () => {
     ZipcodeData.value = ZipcodeDatas
 }
 
-//fletch  data 
+//Fetch  data 
 function getApiData(a) {
     fetch(`${a}`, {
         method: 'GET',
@@ -77,20 +77,24 @@ const populateJobs = (a, b) => {
     div1.appendChild(pTag)
     div1.appendChild(h4Tag)
     div1.appendChild(pTag2)
-
+    let h2main=document.getElementById('serachTopic')
+    h2main.innerHTML=""
     if (b === GovernmentJob) {
+        h2main.innerHTML="Search State Jobs By Job Title"
         div1.className = 'moJobsDiv'
         h3Tag.innerHTML = a.title
         pTag.innerHTML = a.jobdescription
         pTag.maxlength = "10"
         h4Tag.innerHTML = `${a.salarybasis} : ${a.salarystart}`
     } else if (b === FarmersMarketss) {
+        h2main.innerHTML="Search Farmers Markets By City Name"
         div1.className = 'moFarmersDiv'
         h3Tag.innerHTML = `City: ${a.city}`
         pTag.innerHTML = `Company: ${a.business_name}`
         pTag.maxlength = "10"
         h4Tag.innerHTML = a.location_description
     } if (b === LawEnforcements) {
+        h2main.innerHTML="Search Law Enforcements Agencies by City Name"
         div1.className = 'moLawDiv'
         h3Tag.innerHTML = a.name
         h4Tag.innerHTML = `City Name: ${a.city}`
@@ -98,6 +102,7 @@ const populateJobs = (a, b) => {
         pTag2.innerHTML = `Address : ${a.street_address_2}`
     }
     else if (b === UnemploymentRates) {
+        h2main.innerHTML="Search MO Unemployment Rates by County Name"
         div1.className = 'moUnEmpDiv'
         h3Tag.innerHTML = a.area_name
         h4Tag.innerHTML = `Rate: ${a.unemployment_rate}`
@@ -105,6 +110,7 @@ const populateJobs = (a, b) => {
         pTag2.innerHTML = `Laborforce : ${a.laborforce}`
     }
     else if (b === mOjobCenters) {
+        h2main.innerHTML="Search MO JobCenters by City Name"
         div1.className = 'moJobCenDiv'
         h3Tag.innerHTML = a.city
         h4Tag.innerHTML = `Contact #: ${a.phone}`
@@ -112,12 +118,14 @@ const populateJobs = (a, b) => {
         pTag2.innerHTML = `Address : ${a.address1}`
     }
     else if (b === countiess) {
+        h2main.innerHTML="Search MO Counties by County Name"
         div1.className = 'moCountDiv'
         h3Tag.innerHTML = a.name
         h4Tag.innerHTML = `County Seat: ${a.cnty_seat}`
         pTag.innerHTML = `Code: ${a.fips}`
     }
     else if (b === ZipcodeDatas) {
+        h2main.innerHTML="Search MO Zip Codes Data by Zip Code"
         div1.className = 'moZipDiv'
         h3Tag.innerHTML = a.zcta5ce
         h4Tag.innerHTML = `Land Ac: ${a.aland}`

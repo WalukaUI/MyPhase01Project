@@ -122,3 +122,7 @@ form{
 .notFound{
     color: rgb(180, 218, 240);
 }
+#serachTopic{
+    color: azure;
+    text-align: center;
+}
