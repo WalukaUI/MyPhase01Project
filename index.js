@@ -70,7 +70,7 @@ const populateJobs = (a, b) => {
         h3Tag = document.createElement('h3'),
         pTag = document.createElement('p'),
         h4Tag = document.createElement('h4')
-    pTag2 = document.createElement('p')
+        pTag2 = document.createElement('p')
 
     detailsSection.appendChild(div1)
     div1.appendChild(h3Tag)
