@@ -14,23 +14,22 @@ h1:hover span {
 }
 h1 span:first-child {
 	font-weight: 300;
+    color:azure;
 }
 .topImg{
     position: absolute;
     width: 200px;
 }
 #mainbuttons{
-    text-align: left;
     display: flex;
     align-content: center;
 }
 button {
 	box-shadow:inset 0px 0px 14px -3px #f2fadc;
 	background:linear-gradient(to bottom, #dbe6c4 5%, #9ba892 100%);
-	background-color:#dbe6c4;
+	background-color:#c2bbbe;
 	border-radius:6px;
 	border:1px solid #b2b8ad;
-	display:inline-block;
 	cursor:pointer;
 	color:#292e25;
 	font-weight:bold;
@@ -39,7 +38,7 @@ button {
 }
 button:hover {
 	background:linear-gradient(to bottom, #9ba892 5%, #dbe6c4 100%);
-	background-color:#9ba892;
+	background-color:#737a6e;
 }
 button:active {
 	position:relative;
@@ -49,21 +48,6 @@ button:active {
     height: 80px;
     width: 200px;
     background-color: ""; 
-}
-.myButton {
-	box-shadow: 0px 0px 0px 2px #9fb4f2;
-	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
-	background-color:#7892c2;
-	border-radius:10px;
-	border:1px solid #4e6096;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:19px;
-	padding:12px 37px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #283966;
 }
 #details{
     text-align: center;
@@ -108,6 +92,8 @@ form{
     margin-top: 20px;
     margin-bottom: 20px;
     color: rgb(247, 238, 247);
+    font-weight:600;
+    font-size: large;
 }
 #submits{
     height: 34px;
